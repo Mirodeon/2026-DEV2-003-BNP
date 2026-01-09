@@ -1,5 +1,16 @@
 # Tic Tac Toe – Android Code Kata
 
+## Table of Contents
+
+- [Context](#context)
+- [Objective](#objective)
+- [Tech Stack](#tech-stack)
+- [Design](#design)
+- [How to Run](#how-to-run)
+- [Tests](#tests)
+- [Development Approach](#development-approach)
+- [Possible Improvements](#possible-improvements)
+
 
 ## Context
 
