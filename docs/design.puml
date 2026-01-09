@@ -1,0 +1,61 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+enum Player {
+  X
+  O
+}
+
+class Position {
+  row: Int
+  col: Int
+}
+
+class Board {
+  - size: Int = 3
+  - cells: Player?[][]
+  + get(pos: Position): Player?
+  + place(pos: Position, player: Player): Board
+  + isFull(): Boolean
+}
+
+class GameStatus
+class InProgress
+class Draw
+class Won {
+  + winner: Player
+}
+
+GameStatus <|-- InProgress
+GameStatus <|-- Draw
+GameStatus <|-- Won
+
+class TicTacToeGame {
+  - board: Board
+  - currentPlayer: Player
+  - status: GameStatus
+  + play(pos: Position): TicTacToeGame
+}
+
+class Rules {
+  + evaluate(board: Board): GameStatus
+}
+
+TicTacToeGame *-- Board
+TicTacToeGame o-- Rules
+TicTacToeGame --> GameStatus
+Rules ..> GameStatus
+Board --> Player
+Board ..> Position
+Won --> Player
+
+note left of GameStatus
+  Implemented as a sealed class
+end note
+
+note top of Board
+  Board is immutable.
+  place() returns a new instance.
+end note
+
+@enduml
