@@ -28,6 +28,26 @@ The game rules themselves are intentionally simple in order to keep the focus on
 
 
 ## Design
+
+The application is structured around a small, explicit domain model.
+The game logic is independent from Android and UI concerns, which allows it to be tested in isolation.
+
+The main concepts are:
+- a game aggregate responsible for orchestrating state changes
+- an immutable board representing the current game state
+- a rules evaluator responsible for determining the game status
+
+### Domain Model
+
+The following class diagram illustrates the core domain model and relationships:
+- [`Domain Model`](docs/domain-model.md)
+
+### Main Interaction Flow
+
+The following sequence diagram shows the main interaction flow when a player makes a move:
+- [`Sequence Play Move`](docs/sequence-play-move.md)
+
+
 ## How to Run
 ## Tests
 ## Development Approach
