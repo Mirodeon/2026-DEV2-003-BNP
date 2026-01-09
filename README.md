@@ -49,7 +49,23 @@ The following sequence diagram shows the main interaction flow when a player mak
 
 
 ## How to Run
+
+1. Open the project in Android Studio
+2. Sync Gradle
+3. Run the application on an emulator or a physical device
+
+
 ## Tests
+
+The game logic is covered by unit tests focusing on behavior rather than implementation details.
+
+Tests can be run using:
+- Android Studio test runner
+- Gradle command line
+
+The tests were written following a test-driven approach to guide the design of the domain.
+
+
 ## Development Approach
 
 This repository history reflects the incremental steps taken during development.
