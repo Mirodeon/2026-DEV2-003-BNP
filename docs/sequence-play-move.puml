@@ -1,0 +1,42 @@
+@startuml
+title TicTacToe - Sequence (Play Move)
+
+actor User
+participant "TicTacToeScreen\n(Compose UI)" as UI
+participant "TicTacToeViewModel" as VM
+participant "TicTacToeGame" as Game
+participant "Board" as Board
+participant "Rules" as Rules
+
+User -> UI: tapCell(row, col)
+UI -> VM: onCellTapped(row, col)
+
+VM -> Game: play(Position(row, col))
+
+activate Game
+Game -> Board: get(pos)
+Board --> Game: existingPlayer?
+
+alt cell already occupied
+  Game --> VM: error(InvalidMove)
+  VM --> UI: expose error state
+else valid move
+  Game -> Board: place(pos, currentPlayer)
+  Board --> Game: newBoard
+
+  Game -> Rules: evaluate(newBoard)
+  Rules --> Game: newStatus
+
+  alt newStatus is InProgress
+    Game -> Game: switchPlayer()
+  else game finished (Won/Draw)
+    Game -> Game: keep currentPlayer
+  end
+
+  Game --> VM: newGameState(board, status, currentPlayer)
+  VM --> UI: state updated (StateFlow)
+  UI -> UI: recomposition\n(render board & status)
+end
+
+deactivate Game
+@enduml
