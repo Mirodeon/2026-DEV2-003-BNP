@@ -1,6 +1,7 @@
 package com.mirodeon.tictactoebnp
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Test
 
 class TicTacToeGameTest {
@@ -24,5 +25,16 @@ class TicTacToeGameTest {
         val game = TicTacToeGame.newGame()
 
         assertEquals(3, game.board.size)
+    }
+
+    @Test
+    fun board_is_empty_at_start() {
+        val game = TicTacToeGame.newGame()
+
+        for (row in 0 until game.board.size) {
+            for (col in 0 until game.board.size) {
+                assertNull(game.board.get(Position(row, col)))
+            }
+        }
     }
 }
