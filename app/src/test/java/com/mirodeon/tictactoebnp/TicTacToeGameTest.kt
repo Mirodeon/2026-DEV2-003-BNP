@@ -55,4 +55,13 @@ class TicTacToeGameTest {
 
         assertEquals(Player.O, next.currentPlayer)
     }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun cannot_play_on_occupied_cell() {
+        val game = TicTacToeGame.newGame()
+
+        val afterFirstMove = game.play(Position(1, 1))
+
+        afterFirstMove.play(Position(1, 1))
+    }
 }
