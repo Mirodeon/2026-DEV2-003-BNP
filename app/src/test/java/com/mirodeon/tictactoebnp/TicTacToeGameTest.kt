@@ -104,4 +104,20 @@ class TicTacToeGameTest {
 
         assertEquals(GameStatus.Won(Player.X), g.status)
     }
+
+    @Test
+    fun player_wins_on_main_diagonal() {
+        val game = TicTacToeGame.newGame()
+        val n = game.board.size
+
+        var g = game
+        for (i in 0 until n) {
+            g = g.play(Position(i, i))
+            if (i != n - 1) {
+                g = g.play(Position(i, (i + 1) % n))
+            }
+        }
+
+        assertEquals(GameStatus.Won(Player.X), g.status)
+    }
 }
