@@ -141,4 +141,23 @@ class TicTacToeGameTest {
 
         assertEquals(GameStatus.Won(Player.X), g.status)
     }
+
+    @Test
+    fun game_is_draw_when_board_is_full_without_winner() {
+        // This kata is scoped to a 3x3 board, so we use a known 3x3 draw sequence.
+        val game = TicTacToeGame.newGame()
+
+        val finished = game
+            .play(Position(0, 0)) // X
+            .play(Position(0, 1)) // O
+            .play(Position(0, 2)) // X
+            .play(Position(1, 1)) // O
+            .play(Position(1, 0)) // X
+            .play(Position(1, 2)) // O
+            .play(Position(2, 1)) // X
+            .play(Position(2, 0)) // O
+            .play(Position(2, 2)) // X
+
+        assertEquals(GameStatus.Draw, finished.status)
+    }
 }
