@@ -1,11 +1,6 @@
-package com.mirodeon.tictactoebnp
+package com.mirodeon.tictactoebnp.domain
 
-import com.mirodeon.tictactoebnp.domain.GameStatus
-import com.mirodeon.tictactoebnp.domain.Player
-import com.mirodeon.tictactoebnp.domain.Position
-import com.mirodeon.tictactoebnp.domain.TicTacToeGame
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNull
+import org.junit.Assert
 import org.junit.Test
 
 class TicTacToeGameTest {
@@ -15,21 +10,21 @@ class TicTacToeGameTest {
     fun x_starts_the_game() {
         val game = TicTacToeGame.newGame()
 
-        assertEquals(Player.X, game.currentPlayer)
+        Assert.assertEquals(Player.X, game.currentPlayer)
     }
 
     @Test
     fun game_starts_in_progress() {
         val game = TicTacToeGame.newGame()
 
-        assertEquals(GameStatus.InProgress, game.status)
+        Assert.assertEquals(GameStatus.InProgress, game.status)
     }
 
     @Test
     fun board_is_3_by_3() {
         val game = TicTacToeGame.newGame()
 
-        assertEquals(3, game.board.size)
+        Assert.assertEquals(3, game.board.size)
     }
 
     @Test
@@ -38,7 +33,7 @@ class TicTacToeGameTest {
 
         for (row in 0 until game.board.size) {
             for (col in 0 until game.board.size) {
-                assertNull(game.board.get(Position(row, col)))
+                Assert.assertNull(game.board.get(Position(row, col)))
             }
         }
     }
@@ -51,7 +46,7 @@ class TicTacToeGameTest {
 
         val next = game.play(Position(1, 1))
 
-        assertEquals(Player.X, next.board.get(Position(1, 1)))
+        Assert.assertEquals(Player.X, next.board.get(Position(1, 1)))
     }
 
     @Test
@@ -60,7 +55,7 @@ class TicTacToeGameTest {
 
         val next = game.play(Position(1, 1))
 
-        assertEquals(Player.O, next.currentPlayer)
+        Assert.assertEquals(Player.O, next.currentPlayer)
     }
     //endregion
 
@@ -97,7 +92,7 @@ class TicTacToeGameTest {
             }
         }
 
-        assertEquals(GameStatus.Won(Player.X), g.status)
+        Assert.assertEquals(GameStatus.Won(Player.X), g.status)
     }
 
     @Test
@@ -113,7 +108,7 @@ class TicTacToeGameTest {
             }
         }
 
-        assertEquals(GameStatus.Won(Player.X), g.status)
+        Assert.assertEquals(GameStatus.Won(Player.X), g.status)
     }
 
     @Test
@@ -129,7 +124,7 @@ class TicTacToeGameTest {
             }
         }
 
-        assertEquals(GameStatus.Won(Player.X), g.status)
+        Assert.assertEquals(GameStatus.Won(Player.X), g.status)
     }
 
     @Test
@@ -150,7 +145,7 @@ class TicTacToeGameTest {
             }
         }
 
-        assertEquals(GameStatus.Won(Player.X), g.status)
+        Assert.assertEquals(GameStatus.Won(Player.X), g.status)
     }
     //endregion
 
@@ -171,7 +166,7 @@ class TicTacToeGameTest {
             .play(Position(2, 0)) // O
             .play(Position(2, 2)) // X
 
-        assertEquals(GameStatus.Draw, finished.status)
+        Assert.assertEquals(GameStatus.Draw, finished.status)
     }
 
     @Test(expected = IllegalStateException::class)
