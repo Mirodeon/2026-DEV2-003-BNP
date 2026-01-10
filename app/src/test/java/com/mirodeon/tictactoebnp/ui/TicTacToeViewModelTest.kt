@@ -63,8 +63,31 @@ class TicTacToeViewModelTest {
         vm.onCellClicked(1, 1) // O
         vm.onCellClicked(0, 2) // X -> win
 
+        // invalid click after finished game -> error
         vm.onCellClicked(2, 2)
 
         Assert.assertNotNull(vm.state.value.errorMessage)
+    }
+
+    @Test
+    fun new_game_resets_finished_game_and_clears_error_message() {
+        val vm = TicTacToeViewModel()
+
+        // X wins on row 0
+        vm.onCellClicked(0, 0) // X
+        vm.onCellClicked(1, 0) // O
+        vm.onCellClicked(0, 1) // X
+        vm.onCellClicked(1, 1) // O
+        vm.onCellClicked(0, 2) // X -> win
+
+        // invalid click after finished game -> error
+        vm.onCellClicked(2, 2)
+
+        vm.onNewGame()
+
+        Assert.assertEquals(Player.X, vm.state.value.game.currentPlayer)
+        Assert.assertEquals(GameStatus.InProgress, vm.state.value.game.status)
+        Assert.assertEquals(3, vm.state.value.game.board.size)
+        Assert.assertNull(vm.state.value.errorMessage)
     }
 }
