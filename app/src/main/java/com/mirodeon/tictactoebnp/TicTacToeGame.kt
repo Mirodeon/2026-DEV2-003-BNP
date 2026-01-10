@@ -11,7 +11,7 @@ class TicTacToeGame private constructor(
             return TicTacToeGame(
                 currentPlayer = Player.X,
                 status = GameStatus.InProgress,
-                board = Board()
+                board = Board.empty()
             )
         }
     }
