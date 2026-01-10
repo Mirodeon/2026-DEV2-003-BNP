@@ -6,6 +6,15 @@ class TicTacToeGame private constructor(
     val board: Board
 ) {
 
+    fun play(pos: Position): TicTacToeGame {
+        val newBoard = board.place(pos, currentPlayer)
+        return TicTacToeGame(
+            currentPlayer = currentPlayer,
+            status = status,
+            board = newBoard
+        )
+    }
+
     companion object {
         fun newGame(): TicTacToeGame {
             return TicTacToeGame(

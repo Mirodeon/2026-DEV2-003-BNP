@@ -10,6 +10,12 @@ class Board private constructor(
         return cells[pos.row][pos.col]
     }
 
+    fun place(pos: Position, player: Player): Board {
+        val newCells = Array(size) { r -> cells[r].clone() }
+        newCells[pos.row][pos.col] = player
+        return Board(size, newCells)
+    }
+
     companion object {
         fun empty(size: Int = 3): Board {
             val cells = Array(size) { arrayOfNulls<Player>(size) }
