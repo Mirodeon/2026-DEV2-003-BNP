@@ -96,10 +96,10 @@ class TicTacToeGameTest {
 
         var g = game
         for (row in 0 until n) {
-            g = g.play(Position(row, 0))              // X
+            g = g.play(Position(row, 0))
             if (row != n - 1) {
                 g = g.play(Position(row, 1))
-            } // O
+            }
         }
 
         assertEquals(GameStatus.Won(Player.X), g.status)

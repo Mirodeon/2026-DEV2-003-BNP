@@ -43,6 +43,23 @@ class TicTacToeGame private constructor(
                 }
             }
         }
+
+        for (col in 0 until board.size) {
+            val first = board.get(Position(0, col))
+            if (first != null) {
+                var allSame = true
+                for (row in 1 until board.size) {
+                    if (board.get(Position(row, col)) != first) {
+                        allSame = false
+                        break
+                    }
+                }
+                if (allSame) {
+                    return GameStatus.Won(first)
+                }
+            }
+        }
+
         return GameStatus.InProgress
     }
 
