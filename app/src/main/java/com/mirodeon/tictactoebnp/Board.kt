@@ -11,6 +11,9 @@ class Board private constructor(
     }
 
     fun place(pos: Position, player: Player): Board {
+        require(pos.row in 0 until size && pos.col in 0 until size) {
+            "Position out of bounds"
+        }
         if (cells[pos.row][pos.col] != null) {
             throw IllegalArgumentException("Cell already occupied")
         }
