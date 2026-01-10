@@ -11,6 +11,10 @@ class Board private constructor(
     }
 
     fun place(pos: Position, player: Player): Board {
+        if (cells[pos.row][pos.col] != null) {
+            throw IllegalArgumentException("Cell already occupied")
+        }
+
         val newCells = Array(size) { r -> cells[r].clone() }
         newCells[pos.row][pos.col] = player
         return Board(size, newCells)
