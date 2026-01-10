@@ -8,8 +8,7 @@ class TicTacToeGame private constructor(
 
     fun play(pos: Position): TicTacToeGame {
         val newBoard = board.place(pos, currentPlayer)
-
-        val newStatus = evaluateStatus(newBoard)
+        val newStatus = Rules.evaluate(newBoard)
 
         val nextPlayer = if (newStatus is GameStatus.InProgress) {
             when (currentPlayer) {
@@ -25,70 +24,6 @@ class TicTacToeGame private constructor(
             status = newStatus,
             board = newBoard
         )
-    }
-
-    private fun evaluateStatus(board: Board): GameStatus {
-        for (row in 0 until board.size) {
-            val first = board.get(Position(row, 0))
-            if (first != null) {
-                var allSame = true
-                for (col in 1 until board.size) {
-                    if (board.get(Position(row, col)) != first) {
-                        allSame = false
-                        break
-                    }
-                }
-                if (allSame) {
-                    return GameStatus.Won(first)
-                }
-            }
-        }
-
-        for (col in 0 until board.size) {
-            val first = board.get(Position(0, col))
-            if (first != null) {
-                var allSame = true
-                for (row in 1 until board.size) {
-                    if (board.get(Position(row, col)) != first) {
-                        allSame = false
-                        break
-                    }
-                }
-                if (allSame) {
-                    return GameStatus.Won(first)
-                }
-            }
-        }
-
-        val first = board.get(Position(0, 0))
-        if (first != null) {
-            var allSame = true
-            for (i in 1 until board.size) {
-                if (board.get(Position(i, i)) != first) {
-                    allSame = false
-                    break
-                }
-            }
-            if (allSame) {
-                return GameStatus.Won(first)
-            }
-        }
-
-        val firstAnti = board.get(Position(0, board.size - 1))
-        if (firstAnti != null) {
-            var allSame = true
-            for (i in 1 until board.size) {
-                if (board.get(Position(i, board.size - 1 - i)) != firstAnti) {
-                    allSame = false
-                    break
-                }
-            }
-            if (allSame) {
-                return GameStatus.Won(firstAnti)
-            }
-        }
-
-        return GameStatus.InProgress
     }
 
     companion object {
