@@ -28,4 +28,14 @@ class TicTacToeViewModelTest {
         Assert.assertEquals(Player.O, vm.state.value.game.currentPlayer)
         Assert.assertNull(vm.state.value.errorMessage)
     }
+
+    @Test
+    fun clicking_occupied_cell_sets_error_message() {
+        val vm = TicTacToeViewModel()
+
+        vm.onCellClicked(1, 1) // X
+        vm.onCellClicked(1, 1) // invalid
+
+        Assert.assertNotNull(vm.state.value.errorMessage)
+    }
 }
