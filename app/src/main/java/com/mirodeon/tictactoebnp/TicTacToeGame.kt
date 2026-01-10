@@ -74,6 +74,20 @@ class TicTacToeGame private constructor(
             }
         }
 
+        val firstAnti = board.get(Position(0, board.size - 1))
+        if (firstAnti != null) {
+            var allSame = true
+            for (i in 1 until board.size) {
+                if (board.get(Position(i, board.size - 1 - i)) != firstAnti) {
+                    allSame = false
+                    break
+                }
+            }
+            if (allSame) {
+                return GameStatus.Won(firstAnti)
+            }
+        }
+
         return GameStatus.InProgress
     }
 
