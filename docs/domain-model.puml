@@ -44,10 +44,16 @@ class Rules {
 TicTacToeGame *-- Board
 TicTacToeGame o-- Rules
 TicTacToeGame --> GameStatus
+TicTacToeGame --> Player
 Rules ..> GameStatus
 Board --> Player
 Board ..> Position
 Won --> Player
+
+note left of TicTacToeGame
+  TicTacToeGame is immutable.
+  Each move produces a new game instance.
+end note
 
 note left of GameStatus
   Implemented as a sealed class
