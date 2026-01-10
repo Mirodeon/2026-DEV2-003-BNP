@@ -10,7 +10,11 @@ class TicTacToeViewModel : ViewModel() {
     val state: State<TicTacToeUiState> = _state
 
     fun onCellClicked(row: Int, col: Int) {
-        val nextGame = _state.value.game.play(Position(row, col))
-        _state.value = _state.value.copy(game = nextGame, errorMessage = null)
+        try {
+            val nextGame = _state.value.game.play(Position(row, col))
+            _state.value = _state.value.copy(game = nextGame, errorMessage = null)
+        } catch (e: IllegalArgumentException) {
+            _state.value = _state.value.copy(errorMessage = e.message ?: "Invalid move")
+        }
     }
 }
