@@ -72,4 +72,18 @@ class TicTacToeGameTest {
 
         game.play(Position(outOfBoundsRow, 0))
     }
+
+    @Test
+    fun player_wins_on_a_row() {
+        val game = TicTacToeGame.newGame()
+        val n = game.board.size
+
+        var g = game
+        for (col in 0 until n) {
+            g = g.play(Position(0, col))
+            if (col != n - 1) g = g.play(Position(1, col))
+        }
+
+        assertEquals(GameStatus.Won(Player.X), g.status)
+    }
 }
