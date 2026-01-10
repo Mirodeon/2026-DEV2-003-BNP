@@ -160,4 +160,20 @@ class TicTacToeGameTest {
 
         assertEquals(GameStatus.Draw, finished.status)
     }
+
+    @Test(expected = IllegalStateException::class)
+    fun cannot_play_when_game_is_finished() {
+        val game = TicTacToeGame.newGame()
+        val n = game.board.size
+
+        var g = game
+        for (col in 0 until n) {
+            g = g.play(Position(0, col))
+            if (col != n - 1) {
+                g = g.play(Position(1, col))
+            }
+        }
+
+        g.play(Position(n - 1, n - 1))
+    }
 }
