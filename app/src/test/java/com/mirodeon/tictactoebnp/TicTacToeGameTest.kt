@@ -120,4 +120,25 @@ class TicTacToeGameTest {
 
         assertEquals(GameStatus.Won(Player.X), g.status)
     }
+
+    @Test
+    fun player_wins_on_anti_diagonal() {
+        val game = TicTacToeGame.newGame()
+        val n = game.board.size
+
+        var g = game
+        for (i in 0 until n) {
+            g = g.play(Position(i, n - 1 - i))
+            if (i != n - 1) {
+                val safeCol = (n - 2 - i + n) % n
+                if (safeCol == n - 1 - i) {
+                    g = g.play(Position(i, (safeCol + 1) % n))
+                } else {
+                    g = g.play(Position(i, safeCol))
+                }
+            }
+        }
+
+        assertEquals(GameStatus.Won(Player.X), g.status)
+    }
 }
