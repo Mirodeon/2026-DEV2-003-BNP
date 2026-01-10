@@ -37,4 +37,13 @@ class TicTacToeGameTest {
             }
         }
     }
+
+    @Test
+    fun playing_on_empty_cell_places_current_player_mark() {
+        val game = TicTacToeGame.newGame()
+
+        val next = game.play(Position(1, 1))
+
+        assertEquals(Player.X, next.board.get(Position(1, 1)))
+    }
 }
