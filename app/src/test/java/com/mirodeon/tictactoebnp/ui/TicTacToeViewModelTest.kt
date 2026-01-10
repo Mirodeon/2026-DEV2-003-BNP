@@ -90,4 +90,17 @@ class TicTacToeViewModelTest {
         Assert.assertEquals(3, vm.state.value.game.board.size)
         Assert.assertNull(vm.state.value.errorMessage)
     }
+
+    @Test
+    fun error_message_is_cleared_when_consumed() {
+        val vm = TicTacToeViewModel()
+
+        vm.onCellClicked(1, 1)
+        vm.onCellClicked(1, 1) // error
+        Assert.assertNotNull(vm.state.value.errorMessage)
+
+        vm.onErrorShown()
+
+        Assert.assertNull(vm.state.value.errorMessage)
+    }
 }
