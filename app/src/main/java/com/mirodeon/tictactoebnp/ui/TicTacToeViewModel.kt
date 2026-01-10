@@ -23,4 +23,8 @@ class TicTacToeViewModel : ViewModel() {
     fun onNewGame() {
         _state.value = TicTacToeUiState()
     }
+
+    fun onErrorShown() {
+        _state.value = _state.value.copy(errorMessage = null)
+    }
 }
