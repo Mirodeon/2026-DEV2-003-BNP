@@ -1,5 +1,6 @@
 package com.mirodeon.tictactoebnp
 
-enum class GameStatus {
-    InProgress
+sealed class GameStatus {
+    data object InProgress : GameStatus()
+    data class Won(val winner: Player) : GameStatus()
 }
