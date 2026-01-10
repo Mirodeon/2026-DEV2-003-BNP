@@ -19,4 +19,8 @@ class TicTacToeViewModel : ViewModel() {
             _state.value = _state.value.copy(errorMessage = e.message ?: "Game is finished")
         }
     }
+
+    fun onNewGame() {
+        _state.value = TicTacToeUiState()
+    }
 }
