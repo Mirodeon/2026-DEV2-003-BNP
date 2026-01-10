@@ -10,6 +10,7 @@ import org.junit.Test
 
 class TicTacToeGameTest {
 
+    //region --- New game / initial state ---
     @Test
     fun x_starts_the_game() {
         val game = TicTacToeGame.newGame()
@@ -41,7 +42,9 @@ class TicTacToeGameTest {
             }
         }
     }
+    //endregion
 
+    //region --- Basic play / turn switching ---
     @Test
     fun playing_on_empty_cell_places_current_player_mark() {
         val game = TicTacToeGame.newGame()
@@ -59,7 +62,9 @@ class TicTacToeGameTest {
 
         assertEquals(Player.O, next.currentPlayer)
     }
+    //endregion
 
+    //region --- Invalid moves ---
     @Test(expected = IllegalArgumentException::class)
     fun cannot_play_on_occupied_cell() {
         val game = TicTacToeGame.newGame()
@@ -76,7 +81,9 @@ class TicTacToeGameTest {
 
         game.play(Position(outOfBoundsRow, 0))
     }
+    //endregion
 
+    //region --- Win conditions ---
     @Test
     fun player_wins_on_a_row() {
         val game = TicTacToeGame.newGame()
@@ -145,7 +152,9 @@ class TicTacToeGameTest {
 
         assertEquals(GameStatus.Won(Player.X), g.status)
     }
+    //endregion
 
+    //region --- Draw / finished game ---
     @Test
     fun game_is_draw_when_board_is_full_without_winner() {
         // This kata is scoped to a 3x3 board, so we use a known 3x3 draw sequence.
@@ -180,4 +189,5 @@ class TicTacToeGameTest {
 
         g.play(Position(n - 1, n - 1))
     }
+    //endregion
 }
