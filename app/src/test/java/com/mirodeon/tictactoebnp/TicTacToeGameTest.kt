@@ -46,4 +46,13 @@ class TicTacToeGameTest {
 
         assertEquals(Player.X, next.board.get(Position(1, 1)))
     }
+
+    @Test
+    fun after_playing_a_move_current_player_switches() {
+        val game = TicTacToeGame.newGame()
+
+        val next = game.play(Position(1, 1))
+
+        assertEquals(Player.O, next.currentPlayer)
+    }
 }
