@@ -81,7 +81,25 @@ class TicTacToeGameTest {
         var g = game
         for (col in 0 until n) {
             g = g.play(Position(0, col))
-            if (col != n - 1) g = g.play(Position(1, col))
+            if (col != n - 1) {
+                g = g.play(Position(1, col))
+            }
+        }
+
+        assertEquals(GameStatus.Won(Player.X), g.status)
+    }
+
+    @Test
+    fun player_wins_on_a_column() {
+        val game = TicTacToeGame.newGame()
+        val n = game.board.size
+
+        var g = game
+        for (row in 0 until n) {
+            g = g.play(Position(row, 0))              // X
+            if (row != n - 1) {
+                g = g.play(Position(row, 1))
+            } // O
         }
 
         assertEquals(GameStatus.Won(Player.X), g.status)
