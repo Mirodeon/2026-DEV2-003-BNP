@@ -1,4 +1,4 @@
-package com.mirodeon.tictactoebnp
+package com.mirodeon.tictactoebnp.domain
 
 class TicTacToeGame private constructor(
     val currentPlayer: Player,

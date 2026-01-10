@@ -1,4 +1,4 @@
-package com.mirodeon.tictactoebnp
+package com.mirodeon.tictactoebnp.domain
 
 object Rules {
 

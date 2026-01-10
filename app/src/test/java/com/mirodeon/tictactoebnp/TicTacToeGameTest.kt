@@ -1,5 +1,9 @@
 package com.mirodeon.tictactoebnp
 
+import com.mirodeon.tictactoebnp.domain.GameStatus
+import com.mirodeon.tictactoebnp.domain.Player
+import com.mirodeon.tictactoebnp.domain.Position
+import com.mirodeon.tictactoebnp.domain.TicTacToeGame
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test

@@ -1,4 +1,4 @@
-package com.mirodeon.tictactoebnp
+package com.mirodeon.tictactoebnp.domain
 
 sealed class GameStatus {
     data object InProgress : GameStatus()

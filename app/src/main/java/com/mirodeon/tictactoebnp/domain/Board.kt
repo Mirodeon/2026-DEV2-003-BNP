@@ -1,5 +1,4 @@
-package com.mirodeon.tictactoebnp
-
+package com.mirodeon.tictactoebnp.domain
 
 class Board private constructor(
     val size: Int,
