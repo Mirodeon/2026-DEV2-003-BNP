@@ -15,6 +15,8 @@ class TicTacToeViewModel : ViewModel() {
             _state.value = _state.value.copy(game = nextGame, errorMessage = null)
         } catch (e: IllegalArgumentException) {
             _state.value = _state.value.copy(errorMessage = e.message ?: "Invalid move")
+        } catch (e: IllegalStateException) {
+            _state.value = _state.value.copy(errorMessage = e.message ?: "Game is finished")
         }
     }
 }
