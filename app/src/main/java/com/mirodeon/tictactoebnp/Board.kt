@@ -23,6 +23,17 @@ class Board private constructor(
         return Board(size, newCells)
     }
 
+    fun isFull(): Boolean {
+        for (row in 0 until size) {
+            for (col in 0 until size) {
+                if (get(Position(row, col)) == null) {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+
     companion object {
         fun empty(size: Int = 3): Board {
             val cells = Array(size) { arrayOfNulls<Player>(size) }
