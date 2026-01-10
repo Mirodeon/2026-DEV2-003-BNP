@@ -18,4 +18,11 @@ class TicTacToeGameTest {
 
         assertEquals(GameStatus.InProgress, game.status)
     }
+
+    @Test
+    fun board_is_3_by_3() {
+        val game = TicTacToeGame.newGame()
+
+        assertEquals(3, game.board.size)
+    }
 }
