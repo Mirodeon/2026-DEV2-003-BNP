@@ -1,1 +1,1 @@
-![Sequence Play Move](https://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/Mirodeon/2026-DEV2-003-BNP/refs/heads/main/docs/sequence-play-move.puml)
+![Sequence Play Move](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Mirodeon/2026-DEV2-003-BNP/refs/heads/main/docs/sequence-play-move.puml)
