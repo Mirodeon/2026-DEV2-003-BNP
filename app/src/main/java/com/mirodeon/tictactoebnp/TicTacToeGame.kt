@@ -8,8 +8,14 @@ class TicTacToeGame private constructor(
 
     fun play(pos: Position): TicTacToeGame {
         val newBoard = board.place(pos, currentPlayer)
+
+        val nextPlayer = when (currentPlayer) {
+            Player.X -> Player.O
+            Player.O -> Player.X
+        }
+
         return TicTacToeGame(
-            currentPlayer = currentPlayer,
+            currentPlayer = nextPlayer,
             status = status,
             board = newBoard
         )
