@@ -12,10 +12,10 @@ class TicTacToeViewModelTest {
     fun starts_with_a_new_game() {
         val vm = TicTacToeViewModel()
 
-        Assert.assertEquals(Player.X, vm.state.game.currentPlayer)
-        Assert.assertEquals(GameStatus.InProgress, vm.state.game.status)
-        Assert.assertEquals(3, vm.state.game.board.size)
-        Assert.assertNull(vm.state.errorMessage)
+        Assert.assertEquals(Player.X, vm.state.value.game.currentPlayer)
+        Assert.assertEquals(GameStatus.InProgress, vm.state.value.game.status)
+        Assert.assertEquals(3, vm.state.value.game.board.size)
+        Assert.assertNull(vm.state.value.errorMessage)
     }
 
     @Test
@@ -24,8 +24,8 @@ class TicTacToeViewModelTest {
 
         vm.onCellClicked(1, 1)
 
-        Assert.assertEquals(Player.X, vm.state.game.board.get(Position(1, 1)))
-        Assert.assertEquals(Player.O, vm.state.game.currentPlayer)
-        Assert.assertNull(vm.state.errorMessage)
+        Assert.assertEquals(Player.X, vm.state.value.game.board.get(Position(1, 1)))
+        Assert.assertEquals(Player.O, vm.state.value.game.currentPlayer)
+        Assert.assertNull(vm.state.value.errorMessage)
     }
 }
