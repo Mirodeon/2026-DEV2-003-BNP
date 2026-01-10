@@ -64,4 +64,12 @@ class TicTacToeGameTest {
 
         afterFirstMove.play(Position(1, 1))
     }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun cannot_play_outside_the_board() {
+        val game = TicTacToeGame.newGame()
+        val outOfBoundsRow = game.board.size
+
+        game.play(Position(outOfBoundsRow, 0))
+    }
 }
