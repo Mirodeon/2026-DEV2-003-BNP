@@ -9,21 +9,30 @@ class TicTacToeGame private constructor(
     fun play(pos: Position): TicTacToeGame {
         val newBoard = board.place(pos, currentPlayer)
         val newStatus = Rules.evaluate(newBoard)
-
-        val nextPlayer = if (newStatus is GameStatus.InProgress) {
-            when (currentPlayer) {
-                Player.X -> Player.O
-                Player.O -> Player.X
-            }
-        } else {
-            currentPlayer
-        }
+        val nextPlayer = playerForNextState(newStatus)
 
         return TicTacToeGame(
             currentPlayer = nextPlayer,
             status = newStatus,
             board = newBoard
         )
+    }
+
+    private fun playerForNextState(status: GameStatus): Player {
+        return if (gameContinues(status)) {
+            oppositePlayer()
+        } else currentPlayer
+    }
+
+    private fun gameContinues(status: GameStatus): Boolean {
+        return status is GameStatus.InProgress
+    }
+
+    private fun oppositePlayer(): Player {
+        return when (currentPlayer) {
+            Player.X -> Player.O
+            Player.O -> Player.X
+        }
     }
 
     companion object {
