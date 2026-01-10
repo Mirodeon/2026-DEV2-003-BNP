@@ -7,6 +7,10 @@ class TicTacToeGame private constructor(
 ) {
 
     fun play(pos: Position): TicTacToeGame {
+        if (!isInProgress()) {
+            throw IllegalStateException("Game is finished")
+        }
+
         val newBoard = board.place(pos, currentPlayer)
         val newStatus = Rules.evaluate(newBoard)
         val nextPlayer = playerForNextState(newStatus)
@@ -16,6 +20,10 @@ class TicTacToeGame private constructor(
             status = newStatus,
             board = newBoard
         )
+    }
+
+    private fun isInProgress(): Boolean {
+        return status is GameStatus.InProgress
     }
 
     private fun playerForNextState(status: GameStatus): Player {
