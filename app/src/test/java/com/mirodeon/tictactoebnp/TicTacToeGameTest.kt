@@ -11,4 +11,11 @@ class TicTacToeGameTest {
 
         assertEquals(Player.X, game.currentPlayer)
     }
+
+    @Test
+    fun game_starts_in_progress() {
+        val game = TicTacToeGame.newGame()
+
+        assertEquals(GameStatus.InProgress, game.status)
+    }
 }
