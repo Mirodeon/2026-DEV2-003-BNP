@@ -8,6 +8,10 @@ object Rules {
         winnerOnMainDiagonal(board)?.let { return GameStatus.Won(it) }
         winnerOnAntiDiagonal(board)?.let { return GameStatus.Won(it) }
 
+        if (isBoardFull(board)) {
+            return GameStatus.Draw
+        }
+
         return GameStatus.InProgress
     }
 
@@ -46,5 +50,16 @@ object Rules {
             }
         }
         return first
+    }
+
+    private fun isBoardFull(board: Board): Boolean {
+        for (row in 0 until board.size) {
+            for (col in 0 until board.size) {
+                if (board.get(Position(row, col)) == null) {
+                    return false
+                }
+            }
+        }
+        return true
     }
 }
