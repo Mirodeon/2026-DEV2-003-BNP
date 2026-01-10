@@ -38,4 +38,17 @@ class TicTacToeViewModelTest {
 
         Assert.assertNotNull(vm.state.value.errorMessage)
     }
+
+    @Test
+    fun valid_move_clears_previous_error_message() {
+        val vm = TicTacToeViewModel()
+
+        vm.onCellClicked(1, 1) // X
+        vm.onCellClicked(1, 1) // invalid → error
+        Assert.assertNotNull(vm.state.value.errorMessage)
+
+        vm.onCellClicked(0, 0) // valid move
+
+        Assert.assertNull(vm.state.value.errorMessage)
+    }
 }
