@@ -43,4 +43,14 @@ class TicTacToeScreenTest {
 
         rule.onNodeWithTag("snackbar", useUnmergedTree = true).assertIsDisplayed()
     }
+
+    @Test
+    fun reset_clears_the_board() {
+        rule.onNodeWithTag("cell-1-1", useUnmergedTree = true).performClick()
+        rule.onNodeWithTag("cell-1-1-text", useUnmergedTree = true).assertTextEquals("X")
+
+        rule.onNodeWithTag("reset", useUnmergedTree = true).performClick()
+
+        rule.onNodeWithTag("cell-1-1-text", useUnmergedTree = true).assertTextEquals("")
+    }
 }
