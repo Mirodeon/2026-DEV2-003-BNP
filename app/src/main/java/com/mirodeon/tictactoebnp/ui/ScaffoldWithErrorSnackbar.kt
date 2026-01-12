@@ -17,6 +17,7 @@ import androidx.compose.ui.platform.testTag
 fun ScaffoldWithErrorSnackbar(
     errorMessage: String?,
     onErrorConsumed: () -> Unit,
+    topBar: @Composable (() -> Unit) = {},
     content: @Composable () -> Unit
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
@@ -28,6 +29,7 @@ fun ScaffoldWithErrorSnackbar(
     }
 
     Scaffold(
+        topBar = topBar,
         snackbarHost = {
             SnackbarHost(
                 hostState = snackbarHostState,
