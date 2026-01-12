@@ -3,6 +3,7 @@ package com.mirodeon.tictactoebnp.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.mirodeon.tictactoebnp.domain.GameStatus
 import com.mirodeon.tictactoebnp.domain.Player
 import com.mirodeon.tictactoebnp.domain.Position
 import com.mirodeon.tictactoebnp.ui.theme.TicTacToeTheme
@@ -13,12 +14,20 @@ fun TicTacToeScreen(
 ) {
     val uiState = vm.state.value
     val boardSize = uiState.game.board.size
+    val statusText = when (val status = uiState.game.status) {
+        GameStatus.InProgress -> "${uiState.game.currentPlayer} to play"
+        is GameStatus.Won -> "${status.winner} wins"
+        GameStatus.Draw -> "Draw"
+    }
 
     ScaffoldWithErrorSnackbar(
         errorMessage = uiState.errorMessage,
         onErrorConsumed = { vm.onErrorShown() },
         topBar = {
-            TicTacToeTopBar(onResetClick = { vm.onNewGame() })
+            TicTacToeTopBar(
+                statusText = statusText,
+                onResetClick = { vm.onNewGame() }
+            )
         }
     ) {
         TicTacToeBoard(

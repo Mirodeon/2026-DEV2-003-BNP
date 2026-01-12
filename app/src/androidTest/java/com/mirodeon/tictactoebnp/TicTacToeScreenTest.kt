@@ -3,9 +3,9 @@ package com.mirodeon.tictactoebnp
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.test.SemanticsMatcher
+import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.assertTextContains
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -22,13 +22,6 @@ class TicTacToeScreenTest {
     fun board_displays_9_cells() {
         rule.onAllNodes(hasTestTagRegex(Regex("cell-\\d+-\\d+")), useUnmergedTree = true)
             .assertCountEquals(9)
-    }
-
-    private fun hasTestTagRegex(regex: Regex): SemanticsMatcher {
-        return SemanticsMatcher("Has test tag matching $regex") { node ->
-            val tag = node.config.getOrNull(SemanticsProperties.TestTag)
-            tag != null && regex.matches(tag)
-        }
     }
 
     @Test
@@ -57,6 +50,21 @@ class TicTacToeScreenTest {
 
     @Test
     fun status_shows_current_player_at_start() {
-        rule.onNodeWithTag("status", useUnmergedTree = true).assertTextContains("X")
+        rule.onNodeWithTag("status", useUnmergedTree = true).assert(textContains("X"))
+    }
+
+    private fun hasTestTagRegex(regex: Regex): SemanticsMatcher {
+        return SemanticsMatcher("Has test tag matching $regex") { node ->
+            val tag = node.config.getOrNull(SemanticsProperties.TestTag)
+            tag != null && regex.matches(tag)
+        }
+    }
+
+    private fun textContains(sub: String): SemanticsMatcher {
+        return SemanticsMatcher("Text contains '$sub'") { node ->
+            val texts =
+                node.config.getOrNull(SemanticsProperties.Text) ?: return@SemanticsMatcher false
+            texts.any { it.text.contains(sub) }
+        }
     }
 }
