@@ -59,6 +59,19 @@ class TicTacToeScreenTest {
         rule.onNodeWithTag("status", useUnmergedTree = true).assert(textContains("O"))
     }
 
+    @Test
+    fun status_shows_winner_when_game_is_won() {
+        rule.onNodeWithTag("cell-0-0", useUnmergedTree = true).performClick() // X
+        rule.onNodeWithTag("cell-1-0", useUnmergedTree = true).performClick() // O
+        rule.onNodeWithTag("cell-0-1", useUnmergedTree = true).performClick() // X
+        rule.onNodeWithTag("cell-1-1", useUnmergedTree = true).performClick() // O
+        rule.onNodeWithTag("cell-0-2", useUnmergedTree = true).performClick() // X -> win
+
+        rule.onNodeWithTag("status", useUnmergedTree = true)
+            .assert(textContains("X"))
+            .assert(textContains("win"))
+    }
+
     private fun hasTestTagRegex(regex: Regex): SemanticsMatcher {
         return SemanticsMatcher("Has test tag matching $regex") { node ->
             val tag = node.config.getOrNull(SemanticsProperties.TestTag)
