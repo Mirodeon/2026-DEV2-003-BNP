@@ -2,6 +2,7 @@ package com.mirodeon.tictactoebnp.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -18,10 +19,14 @@ fun TicTacToeTopBar(
     TopAppBar(
         title = {
             Column {
-                Text("Tic Tac Toe")
+                Text(
+                    "Tic Tac Toe",
+                    style = MaterialTheme.typography.titleLarge
+                )
                 Text(
                     text = statusText,
-                    modifier = Modifier.testTag("status")
+                    modifier = Modifier.testTag("status"),
+                    style = MaterialTheme.typography.bodyMedium
                 )
             }
         },

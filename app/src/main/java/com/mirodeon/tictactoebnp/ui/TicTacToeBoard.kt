@@ -3,10 +3,13 @@ package com.mirodeon.tictactoebnp.ui
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,7 +28,9 @@ fun TicTacToeBoard(
         columns = GridCells.Fixed(boardSize),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .wrapContentWidth(Alignment.CenterHorizontally)
+            .widthIn(max = 360.dp)
+            .padding(horizontal = 16.dp, vertical = 24.dp)
             .testTag("board"),
         horizontalArrangement = Arrangement.spacedBy(0.dp),
         verticalArrangement = Arrangement.spacedBy(0.dp),
