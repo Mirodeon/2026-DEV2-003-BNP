@@ -4,6 +4,7 @@
 
 - [Context](#context)
 - [Objective](#objective)
+- [Application Preview](#application-preview)
 - [Tech Stack](#tech-stack)
 - [Design](#design)
 - [How to Run](#how-to-run)
@@ -30,13 +31,17 @@ The objective of this kata is to implement a Tic Tac Toe game while focusing on:
 The game rules themselves are intentionally simple in order to keep the focus on design and code quality.
 
 
+## Application Preview
+
+![Tic Tac Toe gameplay](docs/screenshots/gameplay.png)
+
+
 ## Tech Stack
 
 - Kotlin
 - Jetpack Compose
 - Android ViewModel
 - JUnit (unit tests)
-
 
 ## Design
 
@@ -47,6 +52,11 @@ The main concepts are:
 - a game aggregate responsible for orchestrating state changes
 - an immutable board representing the current game state
 - a rules evaluator responsible for determining the game status
+
+Note:  
+PlantUML diagrams are rendered via the public PlantUML server.  
+Due to GitHub caching, diagrams may occasionally appear outdated in the markdown preview.  
+The `.puml` source files are the reference and always reflect the latest design.
 
 ### Domain Model
 
@@ -61,20 +71,68 @@ The following sequence diagram shows the main interaction flow when a player mak
 
 ## How to Run
 
-1. Open the project in Android Studio
+### Using Android Studio / IntelliJ
+
+1. Open the project in Android Studio (or IntelliJ with Android support)
 2. Sync Gradle
-3. Run the application on an emulator or a physical device
+3. Run the `Run app` configuration on an emulator or a physical device
+
+Shared run configurations are provided with the project for convenience.
+
+### Using Gradle (command line)
+
+From the project root:
+```bash
+./gradlew installDebug
+```
+> An emulator or physical device must be running.
 
 
 ## Tests
 
-The game logic is covered by unit tests focusing on behavior rather than implementation details.
+The project contains two types of tests:
+> All Gradle commands below are expected to be run from the project root.
 
-Tests can be run using:
-- Android Studio test runner
-- Gradle command line
+### Unit tests (JVM)
 
-The tests were written following a test-driven approach to guide the design of the domain.
+These tests cover:
+- the domain game logic
+- the ViewModel and UI state
+
+Run with:
+```bash
+./gradlew testDebugUnitTest
+```
+
+### Instrumented tests (Compose UI)
+
+These tests cover:
+- UI interactions
+- user flows
+- error handling
+
+Run with:
+```bash
+./gradlew connectedDebugAndroidTest
+```
+> An emulator or physical device must be running.
+
+### Running all tests
+
+Both unit and instrumented tests can be run together with:
+```bash
+./gradlew testDebugUnitTest connectedDebugAndroidTest
+```
+> An emulator or physical device must be running.
+
+### Using the IDE
+
+Shared run configurations are provided with the project:
+- `Run app`
+- `Unit tests (JVM)`
+- `Android tests (instrumented)`
+
+These configurations can be used directly from Android Studio or IntelliJ to run the application or the different test suites.
 
 
 ## Development Approach
@@ -86,7 +144,11 @@ rather than squashing commits into a single final state.
 
 ## Possible Improvements
 
-- Support for different board sizes
-- Improved error feedback in the UI
-- Optional AI opponent
+The following ideas were intentionally left out of the kata scope, but could be explored further:
+- Persist the current game state locally (e.g. to survive process death)
+- Add game history and move replay
+- Support named players instead of fixed X / O
+- Store and display game statistics or a leaderboard
+- Allow configurable board sizes
+- Add an optional AI opponent
 

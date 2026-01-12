@@ -1,1 +1,1 @@
-![Domain Model](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Mirodeon/2026-DEV2-003-BNP/refs/heads/main/docs/domain-model.puml&v=1)
+![Domain Model](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Mirodeon/2026-DEV2-003-BNP/refs/heads/main/docs/domain-model.puml&v=2)
