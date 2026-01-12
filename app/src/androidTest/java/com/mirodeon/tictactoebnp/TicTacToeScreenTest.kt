@@ -53,6 +53,12 @@ class TicTacToeScreenTest {
         rule.onNodeWithTag("status", useUnmergedTree = true).assert(textContains("X"))
     }
 
+    @Test
+    fun status_switches_to_o_after_x_plays() {
+        rule.onNodeWithTag("cell-1-1", useUnmergedTree = true).performClick()
+        rule.onNodeWithTag("status", useUnmergedTree = true).assert(textContains("O"))
+    }
+
     private fun hasTestTagRegex(regex: Regex): SemanticsMatcher {
         return SemanticsMatcher("Has test tag matching $regex") { node ->
             val tag = node.config.getOrNull(SemanticsProperties.TestTag)
