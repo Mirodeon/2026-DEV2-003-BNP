@@ -1,4 +1,4 @@
-package com.mirodeon.tictactoebnp.ui
+package com.mirodeon.tictactoebnp.ui.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.ExperimentalMaterial3Api

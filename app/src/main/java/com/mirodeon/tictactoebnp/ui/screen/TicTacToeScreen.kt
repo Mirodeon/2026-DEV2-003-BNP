@@ -1,4 +1,4 @@
-package com.mirodeon.tictactoebnp.ui
+package com.mirodeon.tictactoebnp.ui.screen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
@@ -6,6 +6,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mirodeon.tictactoebnp.domain.GameStatus
 import com.mirodeon.tictactoebnp.domain.Player
 import com.mirodeon.tictactoebnp.domain.Position
+import com.mirodeon.tictactoebnp.ui.components.TicTacToeTopBar
+import com.mirodeon.tictactoebnp.ui.TicTacToeViewModel
+import com.mirodeon.tictactoebnp.ui.components.TicTacToeBoard
 import com.mirodeon.tictactoebnp.ui.theme.TicTacToeTheme
 
 @Composable

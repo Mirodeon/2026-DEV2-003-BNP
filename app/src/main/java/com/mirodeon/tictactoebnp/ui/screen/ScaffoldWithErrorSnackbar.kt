@@ -1,4 +1,4 @@
-package com.mirodeon.tictactoebnp.ui
+package com.mirodeon.tictactoebnp.ui.screen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding

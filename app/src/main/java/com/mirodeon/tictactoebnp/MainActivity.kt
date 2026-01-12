@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.mirodeon.tictactoebnp.ui.TicTacToeScreen
+import com.mirodeon.tictactoebnp.ui.screen.TicTacToeScreen
 import com.mirodeon.tictactoebnp.ui.theme.TicTacToeTheme
 
 class MainActivity : ComponentActivity() {

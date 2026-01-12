@@ -1,4 +1,4 @@
-package com.mirodeon.tictactoebnp.ui
+package com.mirodeon.tictactoebnp.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
