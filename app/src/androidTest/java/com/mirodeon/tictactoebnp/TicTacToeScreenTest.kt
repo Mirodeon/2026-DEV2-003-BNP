@@ -4,6 +4,7 @@ import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.assertCountEquals
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -33,5 +34,13 @@ class TicTacToeScreenTest {
     fun clicking_a_cell_displays_x() {
         rule.onNodeWithTag("cell-1-1", useUnmergedTree = true).performClick()
         rule.onNodeWithTag("cell-1-1-text", useUnmergedTree = true).assertTextEquals("X")
+    }
+
+    @Test
+    fun invalid_move_shows_snackbar() {
+        rule.onNodeWithTag("cell-1-1", useUnmergedTree = true).performClick()
+        rule.onNodeWithTag("cell-1-1", useUnmergedTree = true).performClick()
+
+        rule.onNodeWithTag("snackbar", useUnmergedTree = true).assertIsDisplayed()
     }
 }
