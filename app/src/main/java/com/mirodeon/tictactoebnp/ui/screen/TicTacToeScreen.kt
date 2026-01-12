@@ -3,9 +3,6 @@ package com.mirodeon.tictactoebnp.ui.screen
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.mirodeon.tictactoebnp.domain.GameStatus
-import com.mirodeon.tictactoebnp.domain.Player
-import com.mirodeon.tictactoebnp.domain.Position
 import com.mirodeon.tictactoebnp.ui.components.TicTacToeTopBar
 import com.mirodeon.tictactoebnp.ui.TicTacToeViewModel
 import com.mirodeon.tictactoebnp.ui.components.TicTacToeBoard
@@ -16,33 +13,20 @@ fun TicTacToeScreen(
     vm: TicTacToeViewModel = viewModel()
 ) {
     val uiState = vm.state.value
-    val boardSize = uiState.game.board.size
-    val statusText = when (val status = uiState.game.status) {
-        GameStatus.InProgress -> "${uiState.game.currentPlayer} to play"
-        is GameStatus.Won -> "${status.winner} wins"
-        GameStatus.Draw -> "Draw"
-    }
 
     ScaffoldWithErrorSnackbar(
         errorMessage = uiState.errorMessage,
         onErrorConsumed = { vm.onErrorShown() },
         topBar = {
             TicTacToeTopBar(
-                statusText = statusText,
+                statusText = uiState.statusText,
                 onResetClick = { vm.onNewGame() }
             )
         }
     ) {
         TicTacToeBoard(
-            boardSize = boardSize,
-            cellLabel = { row, col ->
-                val mark = uiState.game.board.get(Position(row, col))
-                when (mark) {
-                    Player.X -> "X"
-                    Player.O -> "O"
-                    null -> ""
-                }
-            },
+            boardSize = uiState.boardSize,
+            cellLabel = uiState::labelAt,
             onCellClick = { row, col -> vm.onCellClicked(row, col) }
         )
     }
